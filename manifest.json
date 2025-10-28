@@ -5,8 +5,7 @@
   "description": "A Chrome extension that uses built-in AI APIs (Prompt API, Summarizer API, etc.) to help you understand and work with text on any webpage.",
   "permissions": [
     "activeTab",
-    "contextMenus",
-    "aiOriginTrial"
+    "contextMenus"
   ],
   "host_permissions": [
     "<all_urls>"
