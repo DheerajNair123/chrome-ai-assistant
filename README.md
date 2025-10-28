@@ -36,7 +36,7 @@ This extension uses Chrome's built-in AI APIs:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/chrome-ai-assistant.git
+   https://github.com/DheerajNair123/chrome-ai-assistant.git
    ```
 
 2. Open Chrome and go to `chrome://extensions/`
@@ -95,7 +95,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 🐛 Issues
 
-If you encounter any issues or have suggestions, please [open an issue](https://github.com/YOUR_USERNAME/chrome-ai-assistant/issues).
+If you encounter any issues or have suggestions, please [open an issue](https://github.com/DheerajNair123/chrome-ai-assistant/issues).
 
 ## 📺 Demo Video
 
