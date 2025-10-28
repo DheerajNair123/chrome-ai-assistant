@@ -1,17 +1,25 @@
 // Content script for Chrome AI Assistant
 // This handles text selection and displays AI results
 
+console.log('[Chrome AI Assistant] Content script loaded');
+
 let selectedText = '';
 let aiPanel = null;
 
 // Listen for text selection
 document.addEventListener('mouseup', handleTextSelection);
+document.addEventListener('keyup', (e) => {
+  // Support keyboard selection (Shift+Arrow etc.)
+  if (e.key === 'Shift' || e.key.startsWith('Arrow')) {
+    handleTextSelection(e);
+  }
+});
 
 function handleTextSelection(e) {
   const selection = window.getSelection();
-  selectedText = selection.toString().trim();
+  selectedText = selection ? selection.toString().trim() : '';
 
-  if (selectedText.length > 5) {
+  if (selectedText && selectedText.length > 2) { // lowered threshold to 3 chars
     showAIPanel(e.pageX, e.pageY);
   } else {
     hideAIPanel();
@@ -44,6 +52,8 @@ function showAIPanel(x, y) {
     btn.addEventListener('click', handleAIAction);
   });
 
+  console.log('[Chrome AI Assistant] AI panel shown');
+
   // Hide panel when clicking outside
   setTimeout(() => {
     document.addEventListener('click', handleOutsideClick);
@@ -55,6 +65,7 @@ function hideAIPanel() {
     aiPanel.remove();
     aiPanel = null;
     document.removeEventListener('click', handleOutsideClick);
+    console.log('[Chrome AI Assistant] AI panel hidden');
   }
 }
 
@@ -85,7 +96,8 @@ async function handleAIAction(e) {
       showErrorModal(action, response.error);
     }
   } catch (error) {
-    showErrorModal(action, error.message);
+    console.error('[Chrome AI Assistant] Messaging error:', error);
+    showErrorModal(action, error.message || 'Unknown error sending message to background');
   }
 }
 
