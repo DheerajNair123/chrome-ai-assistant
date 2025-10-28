@@ -107,6 +107,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     selectedText = request.text;
     handleContextMenuAction(request.action);
   }
+  // Test hook from popup to show a demo modal
+  if (request.type === 'SHOW_TEST_MODAL') {
+    showResultModal('Test', 'This is a test of the Chrome AI Assistant modal UI. If you can see this, the content script and styles are working.');
+  }
 });
 
 async function handleContextMenuAction(action) {
